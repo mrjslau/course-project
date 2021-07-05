@@ -1,12 +1,10 @@
-<app-header></app-header>
+<app-header (selectedSection)="displaySection($event)"></app-header>
 
 <div class="container">
   <div class="row">
-    <div class="col-md-8">
-      <app-recipes></app-recipes>
-    </div>
-    <div class="col-md-4">
-      <app-shopping-list></app-shopping-list>
+    <div class="col-md-12">
+      <app-recipes *ngIf="displayRecipes==true"></app-recipes>
+      <app-shopping-list *ngIf="displayShoppingList==true"></app-shopping-list>
     </div>
   </div>
 </div>

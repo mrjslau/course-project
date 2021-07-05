@@ -6,5 +6,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'course-project';
+  displayRecipes = true;
+  displayShoppingList = false;
+  
+  displaySection(id: number) {
+    if (id == 0) {
+      this.displayRecipes = true;
+      this.displayShoppingList = false;
+    } else {
+      this.displayRecipes = false;
+      this.displayShoppingList = true;
+    }
+  }
 }
