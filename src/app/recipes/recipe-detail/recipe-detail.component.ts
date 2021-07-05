@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { ShoppingListService } from 'src/app/shopping-list/shopping-list.service';
 import { Recipe } from '../recipe.model';
 
 @Component({
@@ -8,10 +9,17 @@ import { Recipe } from '../recipe.model';
 })
 export class RecipeDetailComponent implements OnInit {
   @Input() recipe: Recipe;
+  @ViewChild('ingredient') ingredientRef: ElementRef; //FIX
 
-  constructor() { }
+  constructor(private shoppingListService: ShoppingListService) { }
 
   ngOnInit(): void {
   }
 
+  onAddToListClicked() {
+    var str = this.ingredientRef.nativeElement.value;
+    console.log(str); //FIX
+
+    //this.shoppingListService.addIngredient
+  }
 }
