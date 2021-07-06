@@ -1,0 +1,11 @@
+<app-header (selectedSection)="displaySection($event)"></app-header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <router-outlet></router-outlet>
+      <!-- <app-recipes *ngIf="displayRecipes==true"></app-recipes>
+      <app-shopping-list *ngIf="displayShoppingList==true"></app-shopping-list> -->
+    </div>
+  </div>
+</div>
