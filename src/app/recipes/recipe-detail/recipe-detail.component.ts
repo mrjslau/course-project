@@ -9,7 +9,6 @@ import { Recipe } from '../recipe.model';
 })
 export class RecipeDetailComponent implements OnInit {
   @Input() recipe: Recipe;
-  @ViewChild('ingredient') ingredientRef: ElementRef; //FIX
 
   constructor(private shoppingListService: ShoppingListService) { }
 
@@ -17,9 +16,6 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   onAddToListClicked() {
-    var str = this.ingredientRef.nativeElement.value;
-    console.log(str); //FIX
-
-    //this.shoppingListService.addIngredient
+    this.shoppingListService.addIngredients(this.recipe.ingredients);
   }
 }
