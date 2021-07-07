@@ -1,10 +1,9 @@
-import { EventEmitter } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { Ingredient } from "../shared/ingredient.model";
 import { Recipe } from "./recipe.model";
 
+@Injectable({providedIn: 'root'})
 export class RecipeService {
-    recipeSelected = new EventEmitter<Recipe>();
-
     private recipes: Recipe[] = [
         new Recipe('Ceasar Salad', 'Tasty Salad with some chicken and a fat sauce.', 'https://image.brigitte.de/11711448/t/KU/v3/w960/r1/-/caesars-salad.jpg', [
             new Ingredient('lettuce', 2),
@@ -18,6 +17,15 @@ export class RecipeService {
     ];
 
     getRecipes() {
-        return this.recipes.slice();
+        return this.recipes;
+    }
+
+    getRecipe(id: number): Recipe {
+        const arr = this.recipes.filter(f => f.id == id);
+
+        if(arr?.length > 0)
+            return arr[0];
+
+        return null;
     }
 }

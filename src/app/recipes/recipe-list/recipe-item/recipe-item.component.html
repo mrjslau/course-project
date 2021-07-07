@@ -1,8 +1,13 @@
-<a href="#" class="list-group-item clearfix" (click)="onClick()">
+<a
+    class="list-group-item clearfix"
+    style="cursor: pointer;"
+    [routerLink]="[item.id]">
+
     <div class="pull-left">
         <h4 class="list-group-item-heading"> {{ item.name }} </h4>
         <p class="list-group-item-text"> {{ item.description }} </p>
     </div>
+
     <span class="pull-right">
         <img 
             src="{{ item.imagePath }}" alt="{{ item.name }}" 
