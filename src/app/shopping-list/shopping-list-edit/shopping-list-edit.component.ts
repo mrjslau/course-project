@@ -1,22 +1,22 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ShoppingListService } from '../shopping-list.service';
 
 @Component({
-  selector: 'app-shopping-list-edit',
-  templateUrl: './shopping-list-edit.component.html',
-  styleUrls: ['./shopping-list-edit.component.css']
+    selector: 'app-shopping-list-edit',
+    templateUrl: './shopping-list-edit.component.html',
+    styleUrls: ['./shopping-list-edit.component.css']
 })
-export class ShoppingListEditComponent{
-  @ViewChild('nameInput') nameInputRef: ElementRef;
-  @ViewChild('amountInput') amountInputRef: ElementRef;
+export class ShoppingListEditComponent {
+    constructor(private shoppingListService: ShoppingListService) { }
 
-  constructor(private shoppingListService: ShoppingListService) { }
+    onSubmit(form: NgForm) {
+        const name = form.controls['name'].value;
+        const amount = form.controls['amount'].value;
 
-  onAdd() {
-    this.shoppingListService.addIngredient(
-      this.nameInputRef.nativeElement.value,
-      this.amountInputRef.nativeElement.value
-    );
-  }
+        this.shoppingListService.addIngredient(
+            name, amount
+        );
+    }
 
 }
