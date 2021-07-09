@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, NgSelectOption } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Ingredient } from 'src/app/shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list.service';
@@ -28,6 +28,10 @@ export class ShoppingListEditComponent implements OnInit, OnDestroy {
             }
         );
     }
+    
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
+    }
 
     onSubmit(form: NgForm) {
         const name = form.controls['name'].value;
@@ -42,10 +46,15 @@ export class ShoppingListEditComponent implements OnInit, OnDestroy {
                 name, amount
             );
         }
+
+        this.resetForm();
     }
 
-    ngOnDestroy() {
-        this.subscription.unsubscribe();
+    onDelete(form: NgForm) {
+        const name = form.controls['name'].value;
+        this.shoppingListService.deleteIngredient(name);
+
+        this.resetForm();
     }
 
     resetForm() {

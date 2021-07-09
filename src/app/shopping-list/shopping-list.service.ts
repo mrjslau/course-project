@@ -29,15 +29,30 @@ export class ShoppingListService {
         return this.ingredients.slice();
     }
 
-    changeAmount(name: string, amount: number) {
+    getIngredientIndexByName(name: string) {
         var index = 0;
 
         for (let i of this.ingredients) {
             if (i.name === name) {
-                this.ingredients[index].amount = amount;
+                return index;
             }
 
             index++;
-        } 
+        }
+
+        return -1;
+    }
+
+    deleteIngredient(name: string) {
+        const id = this.getIngredientIndexByName(name);
+        if (id >= 0) {
+            this.ingredients.splice(id, 1);
+        }
+        this.ingredientsChanged.next(this.ingredients.slice());
+    }
+
+    changeAmount(name: string, amount: number) {
+        const id = this.getIngredientIndexByName(name);
+        this.ingredients[id].amount = amount;
     }
 }
