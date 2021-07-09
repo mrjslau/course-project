@@ -28,4 +28,19 @@ export class RecipeService {
 
         return null;
     }
+
+    addRecipe(recipe: Recipe) {
+        this.recipes.push(recipe);
+    }
+
+    updateRecipe(index: number, name: string, description: string, imagePath: string, ingredients: Ingredient[]) {
+        this.recipes[index].name = name;
+        this.recipes[index].description = description;
+        this.recipes[index].imagePath = imagePath;
+        this.recipes[index].ingredients = ingredients;
+    }
+
+    deleteRecipe(index: number) {
+        this.recipes.splice(index, 1);
+    }
 }
